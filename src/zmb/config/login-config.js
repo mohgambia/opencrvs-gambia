@@ -13,7 +13,7 @@ window.config = {
   AUTH_API_URL: 'http://localhost:4040/',
   COUNTRY: 'zmb',
   LANGUAGES: 'en',
-  CLIENT_APP_URL: 'http://localhost:3000/',
+  CLIENT_APP_URL: 'http://draman.iprocuratio.com:3000/',
   SENTRY: 'https://f892d643aab642108f44e2d1795706bc@sentry.io/1774604',
   LOGROCKET: 'opencrvs-foundation/opencrvs-zambia'
 }
