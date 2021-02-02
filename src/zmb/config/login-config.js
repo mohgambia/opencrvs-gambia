@@ -10,7 +10,7 @@
  * graphic logo are (registered/a) trademark(s) of Plan International.
  */
 window.config = {
-  AUTH_API_URL: 'http://localhost:4040/',
+  AUTH_API_URL: 'http://draman.iprocuratio.com:4040/',
   COUNTRY: 'zmb',
   LANGUAGES: 'en',
   CLIENT_APP_URL: 'http://draman.iprocuratio.com:3000/',

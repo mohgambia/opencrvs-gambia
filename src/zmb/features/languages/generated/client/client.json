@@ -1112,7 +1112,7 @@
         "review.formData.header": "{isDraft, select, true {Check responses with the applicant before sending for review} false {Review the answers with the supporting documents}}",
         "review.header.subject.subjectWithoutName": "{eventType, select, birth {Birth} death {Death}} Application",
         "review.header.subject.subjectWitName": "{eventType, select, birth {Birth} death {Death}} Application for {name}",
-        "review.header.title.govtName": "Republic of Zambia",
+        "review.header.title.govtName": "Republic of The Gambia",
         "review.inputs.additionalComments": "Any additional comments?",
         "review.modal.desc.submitConfirmation": "{completeApplication, select, true {This application will be sent to the Registrar for them to review.} false {This application will be sent to the Registrar for completion. Please inform the Applicant that they will need to visit the office with the missing information and supporting documents.}}",
         "review.modal.title.registerConfirmation": "Register this {event}?",

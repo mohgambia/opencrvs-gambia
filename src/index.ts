@@ -169,7 +169,7 @@ export async function createServer() {
     handler: zmbLocationsHandler,
     options: {
       tags: ['api'],
-      description: 'Returns Zambia locations.json'
+      description: 'Returns locations.json'
     }
   })
 
@@ -179,7 +179,7 @@ export async function createServer() {
     handler: zmbFacilitiesHandler,
     options: {
       tags: ['api'],
-      description: 'Returns Zambia facilities.json'
+      description: 'Returns facilities.json'
     }
   })
 
