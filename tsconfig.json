@@ -29,7 +29,7 @@
     "acceptance-tests",
     "src/setupTests.ts",
     "src/**/*.test.ts",
-    "src/zmb/mediators/ocrvs-chatbot",
-    "src/zmb/chatbot"
+    "src/gmb/mediators/ocrvs-chatbot",
+    "src/gmb/chatbot"
   ]
 }

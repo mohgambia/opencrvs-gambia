@@ -10,8 +10,8 @@
     "open:cov": "yarn test && opener coverage/index.html",
     "precommit": "tslint --project ./tsconfig.json && lint-staged",
     "test": "jest  --silent --noStackTrace --coverage && yarn test:compilation && yarn test:ocrvs-chatbot-mediator && yarn test:ocrvs-chatbot",
-    "test:ocrvs-chatbot-mediator": "cd src/zmb/mediators/ocrvs-chatbot/ && yarn install && yarn test",
-    "test:ocrvs-chatbot": "cd src/zmb/chatbot/ && yarn install && yarn test",
+    "test:ocrvs-chatbot-mediator": "cd src/gmb/mediators/ocrvs-chatbot/ && yarn install && yarn test",
+    "test:ocrvs-chatbot": "cd src/gmb/chatbot/ && yarn install && yarn test",
     "test:compilation": "tsc --noEmit",
     "start": "cross-env NODE_ENV=development nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
     "start:prod": "ts-node --transpile-only -r tsconfig-paths/register src/index.ts",
@@ -19,7 +19,7 @@
     "db:backup:create": "DEV=true ./backup-metadata.sh",
     "db:backup:restore": "DEV=true ./restore-metadata.sh",
     "db:clear:all": "DEV=true ./clear-all-data.sh",
-    "contentful:prepare:import": "ts-node -r tsconfig-paths/register src/zmb/features/languages/scripts/contentfulImport.ts"
+    "contentful:prepare:import": "ts-node -r tsconfig-paths/register src/gmb/features/languages/scripts/contentfulImport.ts"
   },
   "devDependencies": {
     "bundlesize": "^0.18.0",
@@ -130,7 +130,9 @@
       "/node_modules/",
       "cypress",
       "/src/zmb/mediators/ocrvs-chatbot/",
-      "/src/zmb/chatbot/"
+      "/src/zmb/chatbot/",
+      "/src/gmb/mediators/ocrvs-chatbot/",
+      "/src/gmb/chatbot/"
     ]
   },
   "resolutions": {

@@ -26,16 +26,16 @@ import {
   AUTH_URL,
   COUNTRY_WIDE_CRUDE_DEATH_RATE
 } from '@resources/constants'
-import { locationsHandler as zmbLocationsHandler } from '@resources/zmb/features/administrative/handler'
-import { facilitiesHandler as zmbFacilitiesHandler } from '@resources/zmb/features/facilities/handler'
-import { definitionsHandler as zmbDefinitionsHandler } from '@resources/zmb/features/definitions/handler'
-import { assetHandler as zmbAssetHandler } from '@resources/zmb/features/assets/handler'
+import { locationsHandler as gmbLocationsHandler } from '@resources/gmb/features/administrative/handler'
+import { facilitiesHandler as gmbFacilitiesHandler } from '@resources/gmb/features/facilities/handler'
+import { definitionsHandler as gmbDefinitionsHandler } from '@resources/gmb/features/definitions/handler'
+import { assetHandler as gmbAssetHandler } from '@resources/gmb/features/assets/handler'
 import {
-  generatorHandler as zmbGeneratorHandler,
-  requestSchema as zmbGeneratorRequestSchema,
-  responseSchema as zmbGeneratorResponseSchema
-} from '@resources/zmb/features/generate/handler'
-import { zmbValidateRegistrationHandler } from '@resources/zmb/features/validate/handler'
+  generatorHandler as gmbGeneratorHandler,
+  requestSchema as gmbGeneratorRequestSchema,
+  responseSchema as gmbGeneratorResponseSchema
+} from '@resources/gmb/features/generate/handler'
+import { gmbValidateRegistrationHandler } from '@resources/gmb/features/validate/handler'
 
 import { join } from 'path'
 
@@ -133,8 +133,8 @@ export async function createServer() {
     handler: (request, h) => {
       const file =
         process.env.NODE_ENV === 'production'
-          ? './zmb/config/client-config.prod.js'
-          : './zmb/config/client-config.js'
+          ? './gmb/config/client-config.prod.js'
+          : './gmb/config/client-config.js'
       // @ts-ignore
       return h.file(join(__dirname, file))
     },
@@ -151,8 +151,8 @@ export async function createServer() {
     handler: (request, h) => {
       const file =
         process.env.NODE_ENV === 'production'
-          ? './zmb/config/login-config.prod.js'
-          : './zmb/config/login-config.js'
+          ? './gmb/config/login-config.prod.js'
+          : './gmb/config/login-config.js'
       // @ts-ignore
       return h.file(join(__dirname, file))
     },
@@ -166,7 +166,7 @@ export async function createServer() {
   server.route({
     method: 'GET',
     path: '/locations',
-    handler: zmbLocationsHandler,
+    handler: gmbLocationsHandler,
     options: {
       tags: ['api'],
       description: 'Returns locations.json'
@@ -176,7 +176,7 @@ export async function createServer() {
   server.route({
     method: 'GET',
     path: '/facilities',
-    handler: zmbFacilitiesHandler,
+    handler: gmbFacilitiesHandler,
     options: {
       tags: ['api'],
       description: 'Returns facilities.json'
@@ -186,7 +186,7 @@ export async function createServer() {
   server.route({
     method: 'GET',
     path: '/assets/{file}',
-    handler: zmbAssetHandler,
+    handler: gmbAssetHandler,
     options: {
       tags: ['api'],
       description: 'Serves country specific assets, unprotected'
@@ -196,7 +196,7 @@ export async function createServer() {
   server.route({
     method: 'GET',
     path: '/definitions/{application}',
-    handler: zmbDefinitionsHandler,
+    handler: gmbDefinitionsHandler,
     options: {
       tags: ['api'],
       description:
@@ -207,7 +207,7 @@ export async function createServer() {
   server.route({
     method: 'POST',
     path: '/validate/registration',
-    handler: zmbValidateRegistrationHandler,
+    handler: gmbValidateRegistrationHandler,
     options: {
       tags: ['api'],
       description:
@@ -218,14 +218,14 @@ export async function createServer() {
   server.route({
     method: 'POST',
     path: '/generate/{type}',
-    handler: zmbGeneratorHandler,
+    handler: gmbGeneratorHandler,
     options: {
       tags: ['api'],
       validate: {
-        payload: zmbGeneratorRequestSchema
+        payload: gmbGeneratorRequestSchema
       },
       response: {
-        schema: zmbGeneratorResponseSchema
+        schema: gmbGeneratorResponseSchema
       },
       description:
         'Generates registration numbers based on country specific implementation logic'

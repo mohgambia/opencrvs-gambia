@@ -18,26 +18,26 @@ coverage:
         paths:
           - src/utils
         threshold: 0.5
-      zmb:
+      gmb:
         paths:
-          - src/zmb
+          - src/gmb
         threshold: 0.5
       chatbot-mediator:
         paths:
-          - src/zmb/features/mediators/ocrvs-chatbot
+          - src/gmb/features/mediators/ocrvs-chatbot
         threshold: 0.5
       chatbot:
         paths:
-          - src/zmb/chatbot
+          - src/gmb/chatbot
         threshold: 0.5
 
 ignore:
-  - "src/zmb/src/config"
-  - "src/zmb/src/features/administrative/generated"
-  - "src/zmb/src/features/administrative/scripts"
-  - "src/zmb/src/features/administrative/source"
-  - "src/zmb/src/features/employees"
-  - "src/zmb/src/features/facilities/generated"
-  - "src/zmb/src/features/facilities/scripts"
-  - "src/zmb/src/features/facilities/source"
-  - "src/zmb/src/features/languages/generated"
+  - "src/gmb/src/config"
+  - "src/gmb/src/features/administrative/generated"
+  - "src/gmb/src/features/administrative/scripts"
+  - "src/gmb/src/features/administrative/source"
+  - "src/gmb/src/features/employees"
+  - "src/gmb/src/features/facilities/generated"
+  - "src/gmb/src/features/facilities/scripts"
+  - "src/gmb/src/features/facilities/source"
+  - "src/gmb/src/features/languages/generated"

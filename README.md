@@ -11,7 +11,7 @@ Also has Zambia module for configuration example
 
 - [What is the resources module?](#what-is-the-resources-module)
 - [How do I run the module alongside the OpenCRVS core?](#how-do-i-run-the-module-alongside-the-opencrvs-core)
-- [What is in the Zambia resources module repository?](#what-is-in-the-zambia-resources-module-repository)
+- [What is in the resources module repository?](#what-is-in-the-zambia-resources-module-repository)
 - [Why do we need this resources module?](#why-do-we-need-this-resources-module)
 - [Developer commands](#developer-commands)
 - [How can I clear the database, and repopulate it after I have changed my facilities, administrative locations or test employees?](#how-can-i-clear-the-database-and-repopulate-it-after-i-have-changed-my-facilities-administrative-locations-or-test-employees)
@@ -77,7 +77,7 @@ This is an example country configuration package for the OpenCRVS core. OpenCRVS
 
 <br>
 
-## What is in the Zambia resources module repository?
+## What is in the resources module repository?
 
 One of the key dependencies and enablers for OpenCRVS is country configuration and a reference data source. This source is bespoke for every implementing nation. If you would like to create your own country implementation, we recommend that you duplicate this repository and use it as a template. So what does it contain?
 
@@ -91,7 +91,7 @@ One of the key dependencies and enablers for OpenCRVS is country configuration a
 
 2. The [src](https://github.com/opencrvs/opencrvs-zambia/tree/master/src) folder contians the configuration to run the resources server, that provides the logo assets, internationalised text, form configuration and certificate template configuration to the OpenCRVS core client as JSON.
 
-3. Inside the src > (your country folder - named using alpha3 country code), e.g. [zmb](https://github.com/opencrvs/opencrvs-zambia/tree/master/src/zmb) you can find
+3. Inside the src > (your country folder - named using alpha3 country code), e.g. [gmb](https://github.com/opencrvs/opencrvs-zambia/tree/master/src/gmb) you can find
 
 - Client config js files, loaded into the OpenCRVS client, allowing you to configure development and production things like:
 
@@ -175,43 +175,43 @@ Running the `yarn db:populate:<<insert alpha3 country code>>` command runs the f
 1. assign-admin-structure-to-locations.ts
 
 <!-- prettier-ignore -->
-```ts-node -r tsconfig-paths/register src/zmb/features/administrative/scripts/assign-admin-structure-to-locations.ts```
+```ts-node -r tsconfig-paths/register src/gmb/features/administrative/scripts/assign-admin-structure-to-locations.ts```
 
 Imports administrative divisions from a relevant source _(Either a CSV file or an API)_ converts the data into [FHIR Location](https://www.hl7.org/fhir/location.html) objects, using the [OpenCRVS interpretation](https://github.com/opencrvs/opencrvs-core-fhir-templates/blob/master/admin-structure/admin-structure-resource.jsonc), and saves JSON files for applying GeoJSON map data later into the extension array. Some custom fields for the country can be utilised in the description or identifier fields.
 
 2. assign-geodata-to-locations.ts
 
 <!-- prettier-ignore -->
-```ts-node -r tsconfig-paths/register src/zmb/features/administrative/scripts/assign-geodata-to-locations.ts```
+```ts-node -r tsconfig-paths/register src/gmb/features/administrative/scripts/assign-geodata-to-locations.ts```
 
 Loads the [FHIR Location](https://www.hl7.org/fhir/location.html) data from the JSON, and compares the names of the individual locations with a source GeoJSON map from [humdata.org](https://data.humdata.org/dataset/administrative-boundaries-of-bangladesh-as-of-2015). If the names match, then the appropriate GeoJSON map is applied to the Location [extension array](https://github.com/opencrvs/opencrvs-core-fhir-templates/blob/master/admin-structure/admin-structure-resource.jsonc#L36). Warnings will be listed for any location which the script has been unable to confidently map GeoJSON data.
 
 3. update-location-data.ts
 
 <!-- prettier-ignore -->
-```ts-node -r tsconfig-paths/register src/zmb/features/administrative/scripts/update-location-data.ts```
+```ts-node -r tsconfig-paths/register src/gmb/features/administrative/scripts/update-location-data.ts```
 
 Once the GeoJSON has been assigned to the location objects, then all the updated location objects are loaded into the OpenCRVS database via [Hearth](https://github.com/jembi/hearth).
 
 4. prepare-statistical-data.ts, add-statistical-data.ts & update-statistical-data.ts
    <!-- prettier-ignore -->
-   ```ts-node -r tsconfig-paths/register src/zmb/features/administrative/scripts/prepare-statistical-data.ts```
+   ```ts-node -r tsconfig-paths/register src/gmb/features/administrative/scripts/prepare-statistical-data.ts```
 
 <!-- prettier-ignore -->
-```ts-node -r tsconfig-paths/register src/zmb/features/administrative/scripts/add-statistical-data.ts```
+```ts-node -r tsconfig-paths/register src/gmb/features/administrative/scripts/add-statistical-data.ts```
 
 <!-- prettier-ignore -->
-```ts-node -r tsconfig-paths/register src/zmb/features/administrative/scripts/update-statistical-data.ts```
+```ts-node -r tsconfig-paths/register src/gmb/features/administrative/scripts/update-statistical-data.ts```
 
 Then statistical information is prepared from a source _(Such as population estimates for male and female populations and the statistical crude birth rate (a ratio used in the calcutation of expected numbers of birth for each region and defined by a governments statistical department.) from either a CSV file or an API)_ and added to each [FHIR Location](https://www.hl7.org/fhir/location.html).
 
 5. prepare-source-facilities.ts & assign-facilities-to-locations.ts
 
 <!-- prettier-ignore -->
-```ts-node -r tsconfig-paths/register src/zmb/features/facilities/scripts/prepare-source-facilities.ts```
+```ts-node -r tsconfig-paths/register src/gmb/features/facilities/scripts/prepare-source-facilities.ts```
 
 <!-- prettier-ignore -->
-```ts-node -r tsconfig-paths/register src/zmb/features/facilities/scripts/assign-facilities-to-locations.ts```
+```ts-node -r tsconfig-paths/register src/gmb/features/facilities/scripts/assign-facilities-to-locations.ts```
 
 An example of how to prepare facility information data from a CSV file into [FHIR Locations](https://www.hl7.org/fhir/location.html). This script converts a facility CSV file for civil registration and health facilities where births and deaths are registered and events occur respectively.
 
@@ -220,10 +220,10 @@ Converts the facilities JSON file into [FHIR Location](https://www.hl7.org/fhir/
 6. prepare-source-employees.ts & assign-employees-to-practitioners.ts
 
 <!-- prettier-ignore -->
-```ts-node -r tsconfig-paths/register src/zmb/features/employees/scripts/prepare-source-employees.ts```
+```ts-node -r tsconfig-paths/register src/gmb/features/employees/scripts/prepare-source-employees.ts```
 
 <!-- prettier-ignore -->
-```ts-node -r tsconfig-paths/register src/zmb/features/employees/scripts/assign-employees-to-practitioners.ts```
+```ts-node -r tsconfig-paths/register src/gmb/features/employees/scripts/assign-employees-to-practitioners.ts```
 
 An example of how to prepare employee data from a CSV file into [FHIR Practitioners](https://www.hl7.org/fhir/practitioner.html) and [PractitionerRoles](https://www.hl7.org/fhir/practitionerrole.html) that assign the employee to a specific office and sets their speciality. The list supplied is a test list based on the users and permissions in the [user-mgnt package.](https://github.com/opencrvs/opencrvs-core/blob/master/packages/user-mgnt/resources/populate.ts)
 
@@ -279,9 +279,9 @@ You can configure your registration number format any way you like in these scri
 
 ### Languages - How do I internationalise or update the OpenCRVS client text?
 
-Client Application: Internationalisation and languages can be configured in [client.json](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/zmb/features/languages/generated/client/client.json).
+Client Application: Internationalisation and languages can be configured in [client.json](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/gmb/features/languages/generated/client/client.json).
 
-SMS Notifications: Internationalisation and languages can be configured in [notification.json](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/zmb/features/languages/generated/notification/notification.json).
+SMS Notifications: Internationalisation and languages can be configured in [notification.json](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/gmb/features/languages/generated/notification/notification.json).
 
 OpenCRVS currently supports the standard Roman and Latin character set and Bengali. In OpenCRVS Alpha, we will need to assist you to configure core to support a new language in the language select in a pull request. We will gladly provide support to you if you want to provide translations and hugely welcome all localisation efforts.
 
@@ -291,7 +291,7 @@ We currently do not recommend one CMS over another and for now the process of up
 
 Contentful is a paid-for service but 1 space and 2 locales are free. At the time of writing we couldnt find a better free option for multi-language content management.
 
-When a new commit is pushed to core, you can pass an environment variable **RESOURCES_PATH** and the commit will automatically generate a descriptions file for your language content keys in [this](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/zmb/features/languages/generated) folder.
+When a new commit is pushed to core, you can pass an environment variable **RESOURCES_PATH** and the commit will automatically generate a descriptions file for your language content keys in [this](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/gmb/features/languages/generated) folder.
 
 There is a command `yarn extract:translations` in core that you can run and compare the output to see if new content keys have been added to core since you last checked.
 
@@ -300,10 +300,10 @@ To perform an initial import to Contentful:
 1. First create a space in Contentful and add up to 2 locales for the free plan. Copy your **space-id** from Contentful settings.
 2. Download and install the [Contentful cli](https://github.com/contentful/contentful-cli)
 3. Run the following command to export your space as you will need ids for your locales: `contentful space export --space-id=<your-space-id>`
-4. Open the exported file and copy the required ids to this [file](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/zmb/features/languages/scripts/constants.ts)
+4. Open the exported file and copy the required ids to this [file](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/gmb/features/languages/scripts/constants.ts)
 5. You can run the following command to generate a **contentful-import.json** file: `yarn contentful:prepare:import`
-6. Run the Contentful import script: `contentful space import --content-file src/zmb/features/languages/generated/contentful-import.json --space-id=<your-space-id>`
-7. Get your API key from contentful settings and add it to docker secrets, or paste [here](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/zmb/constants.ts) for use in development. DO NOT SUBMIT API KEYS TO A PUBLIC REPO!
+6. Run the Contentful import script: `contentful space import --content-file src/gmb/features/languages/generated/contentful-import.json --space-id=<your-space-id>`
+7. Get your API key from contentful settings and add it to docker secrets, or paste [here](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/gmb/constants.ts) for use in development. DO NOT SUBMIT API KEYS TO A PUBLIC REPO!
 
 <br>
 
@@ -327,7 +327,7 @@ This is probably the most important capability of OpenCRVS. How should a country
 
 ## How do I configure the birth and death registration form fields?
 
-The application forms are generated by a json file named [register.json](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/zmb/features/forms/register.json) which contains a large object with properties registerForm and certificateCollectorDefinition. The property registerForm holds the field definitions which are used only for application forms where the latter one holds the data for certificate collector forms. Each of those two properties has definitions for forms separated by properties of corresponding events. That means, registerForm.birth holds the form field definitions only for application forms of the birth event whereas certificateCollectorDefinition.death stands for certificate collector forms of death event.
+The application forms are generated by a json file named [register.json](https://github.com/opencrvs/opencrvs-zambia/blob/master/src/gmb/features/forms/register.json) which contains a large object with properties registerForm and certificateCollectorDefinition. The property registerForm holds the field definitions which are used only for application forms where the latter one holds the data for certificate collector forms. Each of those two properties has definitions for forms separated by properties of corresponding events. That means, registerForm.birth holds the form field definitions only for application forms of the birth event whereas certificateCollectorDefinition.death stands for certificate collector forms of death event.
 
 So, the overall hierarchy looks like,
 
