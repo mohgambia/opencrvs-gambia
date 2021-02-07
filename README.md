@@ -1,8 +1,10 @@
 <p align="center"> <a href="https://imgur.com/mGNCIvh"><img src="https://i.imgur.com/mGNCIvh.png" title="source: imgur.com" / style="max-width:100%;"width="72" height="72"></a>
 </p>
-<h3 align="center">Zambia resources module for OpenCRVS</h3>
-<p align="center">An example configuration
-<br>
+<h3 align="center">Gambia resources module for OpenCRVS</h3>
+<p align="center">Configuration
+<br/>
+Also has Zambia module for configuration example
+<br/>
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
