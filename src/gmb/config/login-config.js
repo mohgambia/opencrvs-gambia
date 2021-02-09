@@ -10,10 +10,10 @@
  * graphic logo are (registered/a) trademark(s) of Plan International.
  */
 window.config = {
-  AUTH_API_URL: 'http://draman.iprocuratio.com:4040/',
+  AUTH_API_URL: '/auth',
   COUNTRY: 'gmb',
   LANGUAGES: 'en',
-  CLIENT_APP_URL: 'http://draman.iprocuratio.com:3000/',
+  CLIENT_APP_URL: '/client',
   SENTRY: 'https://f892d643aab642108f44e2d1795706bc@sentry.io/1774604',
   LOGROCKET: 'qcw6zl/opencrvsgambia'
 }
