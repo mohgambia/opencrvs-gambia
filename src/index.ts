@@ -134,7 +134,9 @@ export async function createServer() {
       const file =
         process.env.NODE_ENV === 'production'
           ? './gmb/config/client-config.prod.js'
-          : './gmb/config/client-config.js'
+          : process.env.NODE_ENV === 'draman' ? 
+            './gmb/config/client-config.draman.js': './gmb/config/client-config.js'
+      console.log(`We are in ${process.env.NODE_ENV} mode, file is ${file}`)
       // @ts-ignore
       return h.file(join(__dirname, file))
     },
@@ -152,7 +154,8 @@ export async function createServer() {
       const file =
         process.env.NODE_ENV === 'production'
           ? './gmb/config/login-config.prod.js'
-          : './gmb/config/login-config.js'
+          : process.env.NODE_ENV === 'draman' ? 
+            './gmb/config/login-config.draman.js': './gmb/config/login-config.js'
       // @ts-ignore
       return h.file(join(__dirname, file))
     },
