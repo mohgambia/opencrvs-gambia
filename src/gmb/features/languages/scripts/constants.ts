@@ -26,7 +26,7 @@ export const SUPPORTED_LOCALES: SupportedLocaleConfig[] = [
     id: '',
     name: 'English (United States)',
     code: 'en-US',
-    fallbackCode: 'bn-BD'
+    fallbackCode: 'en-US'
   }
   // Add more locales to suit your requirements and contentful plan
 ]

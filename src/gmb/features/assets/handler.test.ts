@@ -29,7 +29,7 @@ describe('assets handler tests', () => {
 
     const res = await server.server.inject({
       method: 'GET',
-      url: '/assets/logo.png',
+      url: '/assets/logo2.png',
       headers: {
         Authorization: `Bearer ${token}`
       }

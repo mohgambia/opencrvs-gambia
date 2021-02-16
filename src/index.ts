@@ -222,10 +222,11 @@ export async function createServer() {
     options: {
       tags: ['api'],
       validate: {
-        payload: gmbGeneratorRequestSchema
+        // eslint-disable-line no-use-before-define
+        payload: gmbGeneratorRequestSchema  // eslint-disable-line no-use-before-define
       },
       response: {
-        schema: gmbGeneratorResponseSchema
+        schema: gmbGeneratorResponseSchema    // eslint-disable-line no-use-before-define
       },
       description:
         'Generates registration numbers based on country specific implementation logic'

@@ -13,7 +13,7 @@ window.config = {
   API_GATEWAY_URL: 'https://gateway.{{hostname}}/',
   BACKGROUND_SYNC_BROADCAST_CHANNEL: 'backgroundSynBroadCastChannel',
   COUNTRY: 'gmb',
-  COUNTRY_LOGO_FILE: 'logo.png',
+  COUNTRY_LOGO_FILE: 'logo2.png',
   DESKTOP_TIME_OUT_MILLISECONDS: 900000, // 15 mins
   HEALTH_FACILITY_FILTER: 'DISTRICT',
   LANGUAGES: 'en',
@@ -28,6 +28,7 @@ window.config = {
   FIELD_AGENT_AUDIT_LOCATIONS: 'DISTRICT',
   APPLICATION_AUDIT_LOCATIONS: 'DISTRICT',
   EXTERNAL_VALIDATION_WORKQUEUE: false, // this flag will decide whether to show external validation workqueue on registrar home
+  // Sentry account ? update
   SENTRY: 'https://f892d643aab642108f44e2d1795706bc@sentry.io/1774604',
   LOGROCKET: 'opencrvs-foundation/opencrvs-zambia'
 }
