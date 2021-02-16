@@ -28,6 +28,6 @@ window.config = {
   FIELD_AGENT_AUDIT_LOCATIONS: 'DISTRICT',
   APPLICATION_AUDIT_LOCATIONS: 'DISTRICT',
   EXTERNAL_VALIDATION_WORKQUEUE: false, // this flag will decide whether to show external validation workqueue on registrar home
-  SENTRY: 'https://f892d643aab642108f44e2d1795706bc@sentry.io/1774604',
+  SENTRY: 'https://6ffa829af93d4cbc8413c8251f46753b@o525502.ingest.sentry.io/5639769',
   LOGROCKET: 'qcw6zl/opencrvsgambia'
 }

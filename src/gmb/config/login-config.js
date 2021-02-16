@@ -14,6 +14,6 @@ window.config = {
   COUNTRY: 'gmb',
   LANGUAGES: 'en',
   CLIENT_APP_URL: 'http://localhost:3000',
-  SENTRY: 'https://f892d643aab642108f44e2d1795706bc@sentry.io/1774604',
+  SENTRY: 'https://6ffa829af93d4cbc8413c8251f46753b@o525502.ingest.sentry.io/5639769',
   LOGROCKET: 'qcw6zl/opencrvsgambia'
 }
