@@ -10,16 +10,16 @@
  * graphic logo are (registered/a) trademark(s) of Plan International.
  */
 window.config = {
-  API_GATEWAY_URL: '/gateway',
+  API_GATEWAY_URL: 'http://localhost:7070/',
   BACKGROUND_SYNC_BROADCAST_CHANNEL: 'backgroundSynBroadCastChannel',
   COUNTRY: 'gmb',
   COUNTRY_LOGO_FILE: 'logo.png',
   DESKTOP_TIME_OUT_MILLISECONDS: 900000, // 15 mins
   HEALTH_FACILITY_FILTER: 'DISTRICT',
   LANGUAGES: 'en',
-  LOGIN_URL: '/login',
-  AUTH_URL: '/auth',
-  RESOURCES_URL: '/resources',
+  LOGIN_URL: 'http://localhost:3020',
+  AUTH_URL: 'http://localhost:4040',
+  RESOURCES_URL: 'http://localhost:3040',
   CERTIFICATE_PRINT_CHARGE_FREE_PERIOD: 36500, // 100 years =  (100 * 365) days
   CERTIFICATE_PRINT_CHARGE_UP_LIMIT: 36500, // 100 years =  (100 * 365) days
   CERTIFICATE_PRINT_LOWEST_CHARGE: 0,

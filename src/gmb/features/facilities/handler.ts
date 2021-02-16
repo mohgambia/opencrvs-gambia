@@ -21,6 +21,7 @@ export async function facilitiesHandler(
 ): Promise<ILocationDataResponse> {
   let result
   try {
+    console.log("getting facilities")
     result = await getFacilities()
   } catch (err) {
     throw Error(err)
