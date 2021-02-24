@@ -14,7 +14,7 @@ echo "Working dir: $DIR"
 
 if [ "$DEV" = "true" ]; then
   HOST=mongo1
-  NETWORK=opencrvs-gambia-core_default
+  NETWORK=opencrvs_default
   echo "Working in DEV mode"
 else
   HOST=rs0/mongo1,mongo2,mongo3
