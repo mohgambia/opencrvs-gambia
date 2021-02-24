@@ -13,7 +13,7 @@ window.config = {
   AUTH_API_URL: 'https://auth.{{hostname}}/',
   COUNTRY: 'gmb',
   LANGUAGES: 'en',
-  CLIENT_APP_URL: 'https://register.{{hostname}}/',
+  CLIENT_APP_URL: 'https://signup.{{hostname}}/',
   SENTRY: 'https://f892d643aab642108f44e2d1795706bc@sentry.io/1774604',
   LOGROCKET: 'qcw6zl/opencrvsgambia'
 }
