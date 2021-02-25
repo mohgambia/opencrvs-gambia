@@ -1165,9 +1165,9 @@
                 },
 
                 {
-                  "name": "heigthAtBirth",
+                  "name": "heightAtBirth",
                   "type": "NUMBER",
-                  "step": 0.01,
+                  "step": 0.1,
                   "label": {
                     "defaultMessage": "Length at birth",
                     "description": "Label for form field: Height at birth",

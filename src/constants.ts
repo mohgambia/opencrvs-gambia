@@ -18,7 +18,7 @@ export const RESOURCES_HOST = process.env.RESOURCES_HOST || '0.0.0.0'
 export const RESOURCES_PORT = process.env.RESOURCES_PORT || 3040
 export const CERT_PUBLIC_KEY_PATH =
   (process.env.CERT_PUBLIC_KEY_PATH as string) ||
-  '../opencrvs-iprocuratio/.secrets/public-key.pem'
+  '../opencrvs-core/.secrets/public-key.pem'
 export const AUTH_URL = process.env.AUTH_URL || 'http://localhost:4040'
 export const SENTRY_DSN =
   process.env.SENTRY_DSN ||
