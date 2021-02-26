@@ -1281,7 +1281,12 @@
         "user.profile.audit.description.registered": "Registered vital event",
         "user.profile.audit.description.rejected": "Sent application for updates",
         "user.profile.audit.description.certified": "Printed certificate",
-        "user.profile.auditList.showMore": "Show next {pageSize} of {totalItems}"
+        "user.profile.auditList.showMore": "Show next {pageSize} of {totalItems}",
+        "manufacturers.PFIZER": "Pfizer",
+        "manufacturers.OXFORD": "Oxford",
+        "manufacturers.MODERNA": "Moderna",
+        "manufacturers.ASTRAZENECA": "AstraZeneca",
+        "manufacturers.OTHER": "Other"
       }
     }
   ]

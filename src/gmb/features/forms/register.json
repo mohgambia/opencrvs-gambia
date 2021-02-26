@@ -3,6 +3,339 @@
     "birth": {
       "sections": [
         {
+          "id": "vaccination",
+          "viewType": "form",
+          "name": {
+            "defaultMessage": "Covid-19 vaccine",
+            "description": "Form section name for Vaccination",
+            "id": "form.section.vaccination1.name"
+          },
+          "title": {
+            "defaultMessage": "Vaccine's details",
+            "description": "Form section title for Covid-19 vaccine",
+            "id": "form.section.vaccination1.title"
+          },
+          "hasDocumentSection": false,
+          "groups": [
+            {
+              "id": "vaccionation1-view-group",
+              "fields": [
+                {
+                  "name": "vaccination1Given",
+                  "type": "RADIO_GROUP",
+                  "label": {
+                    "defaultMessage": "Are you giving the 1st dose of COVID19 vaccine?",
+                    "description": "Question to ask the user if they are giving the covid19 vaccine 1st dose",
+                    "id": "form.field.label.vaccine1Given"
+                  },
+                  "required": true,
+                  "initialValue": true,
+                  "validate": [],
+                  "options": [
+                    {
+                      "value": true,
+                      "label": {
+                        "defaultMessage": "Yes",
+                        "description": "confirmation label for yes / no radio button",
+                        "id": "form.field.label.confirm"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "label": {
+                        "defaultMessage": "No",
+                        "description": "deny label for yes / no radio button",
+                        "id": "form.field.label.deny"
+                      }
+                    }
+                  ],
+                  "mapping": {
+                    "mutation": {
+                      "operation": "sectionRemoveTransformer",
+                      "parameters": []
+                    }
+                  }
+                },
+                {
+                  "name": "manufacturer",
+                  "type": "SELECT_WITH_OPTIONS",
+                  "label": {
+                    "defaultMessage": "Manufacturer",
+                    "description": "Label for form field: Manufacturer",
+                    "id": "form.field.label.manufacturer"
+                  },
+                  "required": false,
+                  "initialValue": "PFIZER",
+                  "validate": [],
+                  "placeholder": {
+                    "defaultMessage": "Select",
+                    "description": "Placeholder text for a select",
+                    "id": "form.field.select.placeholder"
+                  },
+                  "options": [
+                    {
+                      "value": "PFIZER",
+                      "label": {
+                        "defaultMessage": "Pfizer",
+                        "description": "Option for form field: Pfizer",
+                        "id": "form.field.label.manufacturerPfizer"
+                      }
+                    },
+                    {
+                      "value": "MODERNA",
+                      "label": {
+                        "defaultMessage": "Moderna",
+                        "description": "Option for form field: Moderna",
+                        "id": "form.field.label.manufacturerModerna"
+                      }
+                    },
+                    {
+                      "value": "OXFORD",
+                      "label": {
+                        "defaultMessage": "Oxford",
+                        "description": "Option for form field: Oxford",
+                        "id": "form.field.label.manufacturerOxford"
+                      }
+                    },
+                    {
+                      "value": "ASTRAZENECA",
+                      "label": {
+                        "defaultMessage": "AstraZeneca",
+                        "description": "Option for form field: AstraZeneca",
+                        "id": "form.field.label.manufacturerAstraZeneca"
+                      }
+                    },
+                    {
+                      "value": "OTHER",
+                      "label": {
+                        "defaultMessage": "Other",
+                        "description": "Option for form field: Other",
+                        "id": "form.field.label.manufacturerOther"
+                      }
+                    }
+                  ],
+                  "conditionals": [
+                    {
+                      "action": "hide",
+                      "expression": "!values.vaccination1Given"
+                    }
+                  ],
+                  "mapping": {
+                    "mutation": {
+                      "operation": "fieldToArrayTransformer"
+                    },
+                    "query": {
+                      "operation": "arrayToFieldTransformer"
+                    }
+                  }
+                },
+                {
+                  "name": "priorityGroup",
+                  "type": "SELECT_WITH_OPTIONS",
+                  "label": {
+                    "defaultMessage": "PriorityGroup",
+                    "description": "Label for form field: priorityGroup",
+                    "id": "form.field.label.priorityGroup"
+                  },
+                  "required": true,
+                  "initialValue": "PFIZER",
+                  "validate": [],
+                  "placeholder": {
+                    "defaultMessage": "Select",
+                    "description": "Placeholder text for a select",
+                    "id": "form.field.select.placeholder"
+                  },
+                  "options": [
+                    {
+                      "value": "1a",
+                      "label": {
+                        "defaultMessage": "1a Health Personnel",
+                        "description": "Option for form field: healthpersonnel",
+                        "id": "form.field.label.manufacturerhealthpersonnel"
+                      }
+                    },
+                    {
+                      "value": "1b",
+                      "label": {
+                        "defaultMessage": "1b Commorbidity",
+                        "description": "Option for form field: Commorbidity",
+                        "id": "form.field.label.commorbidity"
+                      }
+                    },
+                    {
+                      "value": "1c",
+                      "label": {
+                        "defaultMessage": "1c Community Workers",
+                        "description": "Option for form field: communityworkers",
+                        "id": "form.field.label.manufacturercommunityworkers"
+                      }
+                    },
+                    {
+                      "value": "1d",
+                      "label": {
+                        "defaultMessage": "1d Older People (65yo and above)",
+                        "description": "Option for form field: 1d",
+                        "id": "form.field.label.1d"
+                      }
+                    },
+                    {
+                      "value": "2a",
+                      "label": {
+                        "defaultMessage": "2a Teachers",
+                        "description": "Option for form field: 2a",
+                        "id": "form.field.label.2a"
+                      }
+                    },
+                    {
+                      "value": "2b",
+                      "label": {
+                        "defaultMessage": "2b Workers at hotels, restaurants and bars",
+                        "description": "Option for form field: 2b",
+                        "id": "form.field.label.2b"
+                      }
+                    },
+                    {
+                      "value": "2c",
+                      "label": {
+                        "defaultMessage": "2c Security Forces",
+                        "description": "Option for form field: 2c",
+                        "id": "form.field.label.2c"
+                      }
+                    },
+                    {
+                      "value": "3",
+                      "label": {
+                        "defaultMessage": "3 Rest of the population aged 16+",
+                        "description": "Option for form field: 3",
+                        "id": "form.field.label.3"
+                      }
+                    },
+                    {
+                      "value": "4",
+                      "label": {
+                        "defaultMessage": "4 Children from 4yo to 16yo",
+                        "description": "Option for form field: 4",
+                        "id": "form.field.label.4"
+                      }
+                    }
+                    
+                  ],
+                  "conditionals": [
+                    {
+                      "action": "hide",
+                      "expression": "!values.vaccination1Given"
+                    }
+                  ],
+                  "mapping": {
+                    "mutation": {
+                      "operation": "fieldToArrayTransformer"
+                    },
+                    "query": {
+                      "operation": "arrayToFieldTransformer"
+                    }
+                  }
+                },
+                {
+                  "name": "doseGivenDate1",
+                  "type": "DATE",
+                  "label": {
+                    "defaultMessage": "Date of given",
+                    "description": "Label for form field: Date of birth",
+                    "id": "form.field.label.dateOfGiven1"
+                  },
+                  "required": true,
+                  "initialValue": "",
+                  "validate": [
+                    {
+                      "operation": "dateFormatIsCorrect",
+                      "parameters": []
+                    }
+                  ],
+                  "conditionals": [
+                    {
+                      "action": "hide",
+                      "expression": "!values.vaccination1Given"
+                    }
+                  ],
+                  "mapping": {
+                    "mutation": {
+                      "operation": "longDateTransformer",
+                      "parameters": [
+                        "doseGiven1"
+                      ]
+                    },
+                    "query": {
+                      "operation": "fieldValueTransformer",
+                      "parameters": [
+                        "doseGiven1"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "name": "batchNumber",
+                  "type": "TEXT",
+                  "label": {
+                    "defaultMessage": "Batch Number",
+                    "description": "text for batchnumber form field",
+                    "id": "form.field.label.batchnumber"
+                  },
+                  "required": true,
+                  "initialValue": "",
+                  "validate": [],
+                  "conditionals": [
+                    {
+                      "action": "hide",
+                      "expression": "!values.vaccination1Given"
+                    }
+                  ]
+                },
+                {
+                  "name": "notes",
+                  "type": "TEXT",
+                  "label": {
+                    "defaultMessage": "Notes",
+                    "description": "text for adverseevent form field",
+                    "id": "form.field.label.adverseevent"
+                  },
+                  "required": false,
+                  "initialValue": "",
+                  "validate": [],
+                  "conditionals": [
+                    {
+                      "action": "hide",
+                      "expression": "!values.vaccination1Given"
+                    }
+                  ]
+                },
+                {
+                  "name": "seperator",
+                  "type": "SUBSECTION",
+                  "label": {
+                    "defaultMessage": " ",
+                    "description": "empty string",
+                    "id": "form.field.label.empty"
+                  },
+                  "initialValue": "",
+                  "validate": [],
+                  "conditionals": [
+                    {
+                      "action": "hide",
+                      "expression": "!values.vaccination1Given"
+                    }
+                  ]
+                }
+              ],
+              "previewGroups": []
+            }
+          ],
+          "mapping": {
+            "query": {
+              "operation": "emptyFatherSectionTransformer"
+            }
+          }
+        },
+        {
           "id": "registration",
           "viewType": "form",
           "name": {
@@ -1163,7 +1496,6 @@
                     }
                   }
                 },
-
                 {
                   "name": "heightAtBirth",
                   "type": "NUMBER",
@@ -1196,7 +1528,6 @@
                     }
                   }
                 },
-
                 {
                   "name": "placeOfBirth",
                   "type": "SELECT_WITH_OPTIONS",
@@ -2187,7 +2518,7 @@
                     "description": "Option for form field: Type of ID",
                     "id": "form.field.label.iDTypeNationalID"
                   },
-                  "required": true,
+                  "required": false,
                   "initialValue": "",
                   "validate": [
                     {
@@ -4107,7 +4438,7 @@
                     "description": "Option for form field: Type of ID",
                     "id": "form.field.label.iDTypeNationalID"
                   },
-                  "required": true,
+                  "required": false,
                   "initialValue": "",
                   "validate": [
                     {
