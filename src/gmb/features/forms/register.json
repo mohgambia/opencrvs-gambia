@@ -426,7 +426,8 @@
                   ],
                   "nestedFields": {
                     "MOTHER": [],
-                    "FATHER": []
+                    "FATHER": [],
+                    "SELF": []
                   },
                   "conditionals": [],
                   "mapping": {
@@ -677,6 +678,50 @@
                   ],
                   "nestedFields": {
                     "APPLICANT": [
+                      {
+                        "name": "registrationPhone",
+                        "type": "TEL",
+                        "label": {
+                          "defaultMessage": "Phone number",
+                          "description": "Input label for phone input",
+                          "id": "form.field.label.phoneNumber"
+                        },
+                        "required": false,
+                        "initialValue": "",
+                        "validate": [
+                          {
+                            "operation": "phoneNumberFormat"
+                          }
+                        ],
+                        "mapping": {
+                          "mutation": {
+                            "operation": "changeHirerchyMutationTransformer",
+                            "parameters": [
+                              "registration.contactPhoneNumber",
+                              {
+                                "operation": "msisdnTransformer",
+                                "parameters": [
+                                  "registration.contactPhoneNumber"
+                                ]
+                              }
+                            ]
+                          },
+                          "query": {
+                            "operation": "changeHirerchyQueryTransformer",
+                            "parameters": [
+                              "registration.contactPhoneNumber",
+                              {
+                                "operation": "localPhoneTransformer",
+                                "parameters": [
+                                  "registration.contactPhoneNumber"
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    "SELF": [
                       {
                         "name": "registrationPhone",
                         "type": "TEL",
@@ -2644,141 +2689,6 @@
                   }
                 },
                 {
-                  "name": "ruralOrUrbanPermanent",
-                  "type": "RADIO_GROUP",
-                  "label": {
-                    "defaultMessage": " ",
-                    "description": "Empty label for form field",
-                    "id": "form.field.label.emptyLabel"
-                  },
-                  "options": [
-                    {
-                      "label": {
-                        "defaultMessage": "Urban address",
-                        "id": "form.field.label.urban",
-                        "description": "Label for form field checkbox option Urban"
-                      },
-                      "value": "URBAN"
-                    },
-                    {
-                      "label": {
-                        "defaultMessage": "Rural address",
-                        "id": "form.field.label.rural",
-                        "description": "Label for form field checkbox option Rural"
-                      },
-                      "value": "RURAL"
-                    }
-                  ],
-                  "initialValue": "URBAN",
-                  "previewGroup": "permanentAddress",
-                  "hideValueInPreview": true,
-                  "required": false,
-                  "validate": [],
-                  "conditionals": [
-                    {
-                      "action": "hide",
-                      "expression": "!values.countryPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.statePermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.districtPermanent"
-                    }
-                  ],
-                  "mapping": {
-                    "mutation": {
-                      "operation": "fieldValueNestingTransformer",
-                      "parameters": [
-                        "individual",
-                        {
-                          "operation": "fieldToAddressTransformer",
-                          "parameters": [
-                            "PERMANENT",
-                            7
-                          ]
-                        },
-                        "address"
-                      ]
-                    },
-                    "query": {
-                      "operation": "nestedValueToFieldTransformer",
-                      "parameters": [
-                        "individual",
-                        {
-                          "operation": "addressToFieldTransformer",
-                          "parameters": [
-                            "PERMANENT",
-                            7
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                },
-                {
-                  "name": "addressChiefPermanent",
-                  "type": "TEXT",
-                  "label": {
-                    "id": "form.field.label.addressChief",
-                    "defaultMessage": "Chief",
-                    "description": "The lable for form field chief"
-                  },
-                  "previewGroup": "permanentAddress",
-                  "required": false,
-                  "initialValue": "",
-                  "validate": [],
-                  "conditionals": [
-                    {
-                      "action": "hide",
-                      "expression": "!values.countryPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.statePermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"RURAL\""
-                    }
-                  ],
-                  "mapping": {
-                    "mutation": {
-                      "operation": "fieldValueNestingTransformer",
-                      "parameters": [
-                        "individual",
-                        {
-                          "operation": "fieldToAddressTransformer",
-                          "parameters": [
-                            "PERMANENT",
-                            6
-                          ]
-                        },
-                        "address"
-                      ]
-                    },
-                    "query": {
-                      "operation": "nestedValueToFieldTransformer",
-                      "parameters": [
-                        "individual",
-                        {
-                          "operation": "addressToFieldTransformer",
-                          "parameters": [
-                            "PERMANENT",
-                            6
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                },
-                {
                   "name": "addressLine4CityOptionPermanent",
                   "type": "TEXT",
                   "label": {
@@ -2802,10 +2712,6 @@
                     {
                       "action": "hide",
                       "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"URBAN\""
                     }
                   ],
                   "mapping": {
@@ -2862,10 +2768,6 @@
                     {
                       "action": "hide",
                       "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"URBAN\""
                     }
                   ],
                   "mapping": {
@@ -2922,10 +2824,6 @@
                     {
                       "action": "hide",
                       "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"URBAN\""
                     }
                   ],
                   "mapping": {
@@ -2982,10 +2880,6 @@
                     {
                       "action": "hide",
                       "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"URBAN\""
                     }
                   ],
                   "mapping": {
@@ -3012,66 +2906,6 @@
                           "parameters": [
                             "PERMANENT",
                             1
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                },
-                {
-                  "name": "addressLine1Permanent",
-                  "type": "TEXT",
-                  "label": {
-                    "defaultMessage": "Village",
-                    "description": "Title for the address line 1",
-                    "id": "form.field.label.addressLine1"
-                  },
-                  "previewGroup": "permanentAddress",
-                  "required": false,
-                  "initialValue": "",
-                  "validate": [],
-                  "conditionals": [
-                    {
-                      "action": "hide",
-                      "expression": "!values.countryPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.statePermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"RURAL\""
-                    }
-                  ],
-                  "mapping": {
-                    "mutation": {
-                      "operation": "fieldValueNestingTransformer",
-                      "parameters": [
-                        "individual",
-                        {
-                          "operation": "fieldToAddressTransformer",
-                          "parameters": [
-                            "PERMANENT",
-                            5
-                          ]
-                        },
-                        "address"
-                      ]
-                    },
-                    "query": {
-                      "operation": "nestedValueToFieldTransformer",
-                      "parameters": [
-                        "individual",
-                        {
-                          "operation": "addressToFieldTransformer",
-                          "parameters": [
-                            "PERMANENT",
-                            5
                           ]
                         }
                       ]
@@ -4749,115 +4583,6 @@
                   }
                 },
                 {
-                  "name": "ruralOrUrbanPermanent",
-                  "type": "RADIO_GROUP",
-                  "label": {
-                    "defaultMessage": " ",
-                    "description": "Empty label for form field",
-                    "id": "form.field.label.emptyLabel"
-                  },
-                  "options": [
-                    {
-                      "label": {
-                        "defaultMessage": "Urban address",
-                        "id": "form.field.label.urban",
-                        "description": "Label for form field checkbox option Urban"
-                      },
-                      "value": "URBAN"
-                    },
-                    {
-                      "label": {
-                        "defaultMessage": "Rural address",
-                        "id": "form.field.label.rural",
-                        "description": "Label for form field checkbox option Rural"
-                      },
-                      "value": "RURAL"
-                    }
-                  ],
-                  "initialValue": "URBAN",
-                  "previewGroup": "permanentAddress",
-                  "hideValueInPreview": true,
-                  "required": false,
-                  "validate": [],
-                  "conditionals": [
-                    {
-                      "action": "hide",
-                      "expression": "!values.countryPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.statePermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.districtPermanent"
-                    }
-                  ],
-                  "mapping": {
-                    "mutation": {
-                      "operation": "fieldToAddressTransformer",
-                      "parameters": [
-                        "PERMANENT",
-                        7
-                      ]
-                    },
-                    "query": {
-                      "operation": "addressToFieldTransformer",
-                      "parameters": [
-                        "PERMANENT",
-                        7
-                      ]
-                    }
-                  }
-                },
-                {
-                  "name": "addressChiefPermanent",
-                  "type": "TEXT",
-                  "label": {
-                    "id": "form.field.label.addressChief",
-                    "defaultMessage": "Chief",
-                    "description": "The lable for form field chief"
-                  },
-                  "previewGroup": "permanentAddress",
-                  "required": false,
-                  "initialValue": "",
-                  "validate": [],
-                  "conditionals": [
-                    {
-                      "action": "hide",
-                      "expression": "!values.countryPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.statePermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"RURAL\""
-                    }
-                  ],
-                  "mapping": {
-                    "mutation": {
-                      "operation": "fieldToAddressTransformer",
-                      "parameters": [
-                        "PERMANENT",
-                        6
-                      ]
-                    },
-                    "query": {
-                      "operation": "addressToFieldTransformer",
-                      "parameters": [
-                        "PERMANENT",
-                        6
-                      ]
-                    }
-                  }
-                },
-                {
                   "name": "addressLine4CityOptionPermanent",
                   "type": "TEXT",
                   "label": {
@@ -4881,10 +4606,6 @@
                     {
                       "action": "hide",
                       "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"URBAN\""
                     }
                   ],
                   "mapping": {
@@ -4928,10 +4649,6 @@
                     {
                       "action": "hide",
                       "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"URBAN\""
                     }
                   ],
                   "mapping": {
@@ -4975,10 +4692,6 @@
                     {
                       "action": "hide",
                       "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"URBAN\""
                     }
                   ],
                   "mapping": {
@@ -5022,10 +4735,6 @@
                     {
                       "action": "hide",
                       "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"URBAN\""
                     }
                   ],
                   "mapping": {
@@ -5041,53 +4750,6 @@
                       "parameters": [
                         "PERMANENT",
                         1
-                      ]
-                    }
-                  }
-                },
-                {
-                  "name": "addressLine1Permanent",
-                  "type": "TEXT",
-                  "label": {
-                    "defaultMessage": "Village",
-                    "description": "Title for the address line 1",
-                    "id": "form.field.label.addressLine1"
-                  },
-                  "previewGroup": "permanentAddress",
-                  "required": false,
-                  "initialValue": "",
-                  "validate": [],
-                  "conditionals": [
-                    {
-                      "action": "hide",
-                      "expression": "!values.countryPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.statePermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "!values.districtPermanent"
-                    },
-                    {
-                      "action": "hide",
-                      "expression": "values.ruralOrUrbanPermanent !== \"RURAL\""
-                    }
-                  ],
-                  "mapping": {
-                    "mutation": {
-                      "operation": "fieldToAddressTransformer",
-                      "parameters": [
-                        "PERMANENT",
-                        5
-                      ]
-                    },
-                    "query": {
-                      "operation": "addressToFieldTransformer",
-                      "parameters": [
-                        "PERMANENT",
-                        5
                       ]
                     }
                   }
@@ -6538,40 +6200,6 @@
                       "parameters": [
                         "id",
                         "NATIONAL_ID"
-                      ]
-                    }
-                  }
-                },
-                {
-                  "name": "socialSecurityNo",
-                  "type": "NUMBER",
-                  "label": {
-                    "defaultMessage": "Social Security No",
-                    "description": "text for social security number form field",
-                    "id": "form.field.label.socialSecurityNumber"
-                  },
-                  "required": false,
-                  "initialValue": "",
-                  "validate": [],
-                  "conditionals": [
-                    {
-                      "action": "hide",
-                      "expression": "!values.fathersDetailsExist"
-                    }
-                  ],
-                  "mapping": {
-                    "mutation": {
-                      "operation": "fieldToIdentityTransformer",
-                      "parameters": [
-                        "id",
-                        "SOCIAL_SECURITY_NO"
-                      ]
-                    },
-                    "query": {
-                      "operation": "identityToFieldTransformer",
-                      "parameters": [
-                        "id",
-                        "SOCIAL_SECURITY_NO"
                       ]
                     }
                   }
