@@ -3,6 +3,70 @@
     "birth": {
       "sections": [
         {
+          "id": "bornInGambia",
+          "viewType": "form",
+          "name": {
+            "defaultMessage": "Born in Gambia",
+            "description": "Form section name for bornInGambia",
+            "id": "form.section.bornInGambia1.name"
+          },
+          "title": {
+            "defaultMessage": "Born in Gambia",
+            "description": "Form section to ask if born in Gambia",
+            "id": "form.section.bornInGambia1.title"
+          },
+          "hasDocumentSection": false,
+          "groups": [
+            {
+              "id": "born-in-gambia-view-group",
+              "fields": [
+                {
+                  "name": "bornInGambia",
+                  "type": "RADIO_GROUP",
+                  "label": {
+                    "defaultMessage": "Was the patient to be vaccinated born in the Gambia?",
+                    "description": "Question to ask the user if they are giving the covid19 vaccine 1st dose",
+                    "id": "form.field.label.vaccine1Given"
+                  },
+                  "required": true,
+                  "initialValue": true,
+                  "validate": [],
+                  "options": [
+                    {
+                      "value": true,
+                      "label": {
+                        "defaultMessage": "Yes",
+                        "description": "confirmation label for yes / no radio button",
+                        "id": "form.field.label.confirm"
+                      }
+                    },
+                    {
+                      "value": false,
+                      "label": {
+                        "defaultMessage": "No",
+                        "description": "deny label for yes / no radio button",
+                        "id": "form.field.label.deny"
+                      }
+                    }
+                  ],
+                  "mapping": {
+                    "mutation": {
+                      "operation": "sectionRemoveTransformer",
+                      "parameters": []
+                    }
+                  }
+                }
+              ],
+              "previewGroups": []
+            }
+          ],
+          "mapping": {
+            "query": {
+              "operation": "emptyFatherSectionTransformer"
+            }
+          }
+        },
+        {
           "id": "vaccination",
           "viewType": "form",
           "name": {
@@ -2244,6 +2308,7 @@
             "id": "form.section.applicant.title"
           },
           "hasDocumentSection": true,
+          "conditionals": [],
           "groups": [
             {
               "id": "informant-view-group",
@@ -2251,6 +2316,10 @@
                 {
                   "action": "hide",
                   "expression": "(!draftData || !draftData.registration || !((draftData.presentAtBirthRegistration && (draftData.presentAtBirthRegistration === \"LEGAL_GUARDIAN\" || draftData.presentAtBirthRegistration === \"OTHER\")) || (draftData.registration.presentAtBirthRegistration && (draftData.registration.presentAtBirthRegistration === \"LEGAL_GUARDIAN\" || draftData.registration.presentAtBirthRegistration === \"OTHER\")  )))"
+                },
+                {
+                  "action": "hide",
+                  "expression": "!values.bornInGambia"
                 }
               ],
               "fields": [
@@ -3245,6 +3314,10 @@
                 {
                   "action": "hide",
                   "expression": "(!draftData || !draftData.registration || !((draftData.presentAtBirthRegistration && (draftData.presentAtBirthRegistration === \"LEGAL_GUARDIAN\" || draftData.presentAtBirthRegistration === \"OTHER\")) || (draftData.registration.presentAtBirthRegistration && (draftData.registration.presentAtBirthRegistration === \"LEGAL_GUARDIAN\" || draftData.registration.presentAtBirthRegistration === \"OTHER\")  )))"
+                },
+                {
+                  "action": "hide",
+                  "expression": "!values.bornInGambia"
                 }
               ],
               "fields": [
@@ -3972,6 +4045,10 @@
                 {
                   "action": "hide",
                   "expression": "(draftData && draftData.primaryCaregiver && draftData.primaryCaregiver.parentDetailsType && (draftData.primaryCaregiver.parentDetailsType ===  \"FATHER_ONLY\" || draftData.primaryCaregiver.parentDetailsType ===  \"NONE\" ))"
+                },
+                {
+                  "action": "hide",
+                  "expression": "!values.bornInGambia"
                 }
               ],
               "fields": [
@@ -5866,6 +5943,10 @@
                 {
                   "action": "hide",
                   "expression": "(draftData && draftData.primaryCaregiver && draftData.primaryCaregiver.parentDetailsType && (draftData.primaryCaregiver.parentDetailsType ===  \"MOTHER_ONLY\" || draftData.primaryCaregiver.parentDetailsType ===  \"NONE\" ))"
+                },
+                {
+                  "action": "hide",
+                  "expression": "!values.bornInGambia"
                 }
               ],
               "fields": [
@@ -7058,7 +7139,7 @@
                   "name": "uploadDocForChildDOB",
                   "type": "DOCUMENT_UPLOADER_WITH_OPTION",
                   "label": {
-                    "defaultMessage": "Proof of Place and Date of Birth of Child",
+                    "defaultMessage": "Photograph",
                     "description": "Label for list item Child Birth Proof",
                     "id": "form.field.label.proofOfBirthPlaceAndDate"
                   },
@@ -7068,11 +7149,11 @@
                   "validate": [],
                   "options": [
                     {
-                      "value": "Original Birth Record",
+                      "value": "Photograph",
                       "label": {
-                        "defaultMessage": "Original birth record",
-                        "description": "Label for select option original Birth Record",
-                        "id": "form.field.label.docTypeChildBirthProof"
+                        "defaultMessage": "Photograph",
+                        "description": "Label for select option Photograph",
+                        "id": "form.field.label.docTypePicture"
                       }
                     }
                   ],
@@ -7097,6 +7178,12 @@
                   "extraValue": "CHILD",
                   "hideAsterisk": true,
                   "validate": [],
+                  "conditionals": [
+                    {
+                      "action": "hide",
+                      "expression": "!values.bornInGambia"
+                    }
+                  ],
                   "options": [
                     {
                       "value": "Original Birth Record",
@@ -7151,6 +7238,10 @@
                       "description": "Hidden for Parent Details none or Mother only",
                       "action": "hide",
                       "expression": "(draftData && draftData.primaryCaregiver && draftData.primaryCaregiver.parentDetailsType === \"NONE\") || (draftData && draftData.primaryCaregiver && draftData.primaryCaregiver.parentDetailsType === \"FATHER_ONLY\")"
+                    },
+                    {
+                      "action": "hide",
+                      "expression": "!values.bornInGambia"
                     }
                   ],
                   "mapping": {
@@ -7197,6 +7288,10 @@
                       "description": "Hidden for Parent Details none or Father only",
                       "action": "hide",
                       "expression": "(draftData && draftData.primaryCaregiver && draftData.primaryCaregiver.parentDetailsType === \"NONE\") || (draftData && draftData.primaryCaregiver && draftData.primaryCaregiver.parentDetailsType === \"MOTHER_ONLY\") || (draftData && draftData.father && draftData.father.fathersDetailsExist === false)"
+                    },
+                    {
+                      "action": "hide",
+                      "expression": "!values.bornInGambia"
                     }
                   ],
                   "mapping": {
@@ -7258,6 +7353,10 @@
                     {
                       "action": "hide",
                       "expression": "(draftData && draftData.registration && draftData.registration.presentAtBirthRegistration !== \"LEGAL_GUARDIAN\" && draftData.registration.presentAtBirthRegistration !== \"OTHER\")"
+                    },
+                    {
+                      "action": "hide",
+                      "expression": "!values.bornInGambia"
                     }
                   ],
                   "mapping": {
@@ -12405,7 +12504,6 @@
                     }
                   }
                 },
-
                 {
                   "name": "internationalStatePermanent",
                   "type": "TEXT",
