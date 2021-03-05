@@ -82,6 +82,7 @@ export function getLocationIDByDescription(
   locations: fhir.Location[],
   description: string
 ) {
+  console.log(locations, description)
   const location = locations.find(obj => {
     return obj.description === description
   }) as fhir.Location

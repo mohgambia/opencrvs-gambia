@@ -23,6 +23,7 @@ export default async function prepareSourceJSON() {
       '/////////////////////////// CONVERTING FACILITIES CSV TO JSON ///////////////////////////'
     )}`
   )
+  console.log("destination ", crvsOfficeSourceJSON)
   fs.createReadStream(`${FACILITIES_SOURCE}source/crvs-facilities.csv`)
     .pipe(csv2json())
     .pipe(fs.createWriteStream(crvsOfficeSourceJSON))

@@ -22,6 +22,8 @@ export default async function prepareSourceJSON() {
       '/////////////////////////// CONVERTING EMPLOYEES CSV TO JSON ///////////////////////////'
     )}`
   )
+  console.log("sourceJSON", sourceJSON)
+  console.log("read stream", `${EMPLOYEES_SOURCE}test-employees.csv`)
   fs.createReadStream(`${EMPLOYEES_SOURCE}test-employees.csv`)
     .pipe(csv2json())
     .pipe(fs.createWriteStream(sourceJSON))

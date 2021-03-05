@@ -25,6 +25,7 @@ export default async function importEmployees() {
     )}`
   )
   const employees = JSON.parse(fs.readFileSync(sourceJSON).toString())
+  console.log("employees", employees)
   try {
     await composeAndSavePractitioners(
       employees,
@@ -32,6 +33,7 @@ export default async function importEmployees() {
       process.argv[3]
     )
   } catch (err) {
+    console.log(err)
     return internal(err)
   }
   return true

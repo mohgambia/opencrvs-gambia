@@ -47,14 +47,20 @@ export default async function importFacilities() {
         '/////////////////////////// MAPPING CR OFFICES TO LOCATIONS AND SAVING TO FHIR ///////////////////////////'
       )}`
     )
+    
+    
     crvsOfficeLocations = await composeAndSaveFacilities(
       crvsOffices,
       districts.districts
     )
+
+    //console.log("OpenCRVS Locations ", crvsOfficeLocations)
     healthFacilityLocations = await composeAndSaveFacilities(
       healthFacilities,
       districts.districts
     )
+    //console.log("Health facility Locations ", healthFacilityLocations)
+
 
     const fhirLocations: fhir.Location[] = []
     fhirLocations.push(...crvsOfficeLocations)
@@ -68,6 +74,7 @@ export default async function importFacilities() {
       JSON.stringify({ data }, null, 2)
     )
   } catch (err) {
+    console.log(err)
     return internal(err)
   }
 
