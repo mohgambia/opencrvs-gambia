@@ -1004,7 +1004,7 @@
                   "previewGroup": "childNameInEnglish",
                   "type": "TEXT",
                   "label": {
-                    "defaultMessage": "Baptismal name",
+                    "defaultMessage": "Baptismal name (if applicable)",
                     "description": "Label for form field: Baptismal name in english",
                     "id": "form.field.label.childBaptismalName"
                   },
@@ -1036,7 +1036,7 @@
                   "name": "childId",
                   "type": "NUMBER",
                   "label": {
-                    "defaultMessage": "National ID",
+                    "defaultMessage": "National ID Number (NIN)",
                     "description": "Option for form field: Type of ID",
                     "id": "form.field.label.iDTypeNationalID"
                   },
