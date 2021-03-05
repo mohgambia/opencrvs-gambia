@@ -1113,6 +1113,46 @@
                   }
                 },
                 {
+                  "name": "nationality",
+                  "type": "SELECT_WITH_OPTIONS",
+                  "label": {
+                    "defaultMessage": "Nationality",
+                    "description": "Label for form field: Nationality",
+                    "id": "form.field.label.deceased.nationality"
+                  },
+                  "required": false,
+                  "initialValue": "GMB",
+                  "validate": [],
+                  "placeholder": {
+                    "defaultMessage": "Select",
+                    "description": "Placeholder text for a select",
+                    "id": "form.field.select.placeholder"
+                  },
+                  "options": {
+                    "resource": "countries"
+                  },
+                  "mapping": {
+                    "mutation": {
+                      "operation": "fieldValueNestingTransformer",
+                      "parameters": [
+                        "individual",
+                        {
+                          "operation": "fieldToArrayTransformer"
+                        }
+                      ]
+                    },
+                    "query": {
+                      "operation": "nestedValueToFieldTransformer",
+                      "parameters": [
+                        "individual",
+                        {
+                          "operation": "arrayToFieldTransformer"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
                   "name": "gender",
                   "type": "SELECT_WITH_OPTIONS",
                   "label": {
