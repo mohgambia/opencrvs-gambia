@@ -29,3 +29,5 @@ src/tests/locations.json
 
 cypress/screenshots
 cypress/videos
+questions.tgz
+questions/**
