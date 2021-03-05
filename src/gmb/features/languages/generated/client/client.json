@@ -695,7 +695,7 @@
         "form.field.label.iDTypeBRN": "Birth Registration Number",
         "form.field.label.iDTypeDrivingLicense": "Drivers License",
         "form.field.label.iDTypeDRN": "Death Registration Number",
-        "form.field.label.iDTypeNationalID": "National ID",
+        "form.field.label.iDTypeNationalID": "National ID Number (NIN)",
         "form.field.label.iDTypeNoID": "No ID available",
         "form.field.label.iDTypeOther": "Other",
         "form.field.label.iDTypeOtherLabel": "Other type of ID",
