@@ -28,7 +28,6 @@
                     "description": "Question to ask the user if they are giving the covid19 vaccine 1st dose",
                     "id": "form.field.label.vaccine1Given"
                   },
-                  "required": true,
                   "initialValue": true,
                   "validate": [],
                   "options": [
@@ -49,12 +48,7 @@
                       }
                     }
                   ],
-                  "mapping": {
-                    "mutation": {
-                      "operation": "sectionRemoveTransformer",
-                      "parameters": []
-                    }
-                  }
+                  "mapping": {}
                 }
               ],
               "previewGroups": []
@@ -406,6 +400,12 @@
                     "description": "Label for form field: Place of vaccination",
                     "id": "form.field.label.placeOfVaccination"
                   },
+                  "conditionals": [
+                    {
+                      "action": "hide",
+                      "expression": "!values.vaccination1Given"
+                    }
+                  ],
                   "required": true,
                   "initialValue": "",
                   "validate": [],
@@ -703,7 +703,7 @@
               "conditionals": [
                 {
                   "action": "hide",
-                  "expression": "(!draftData || !draftData.registration || draftData.registration.presentAtBirthRegistration !== \"BOTH_PARENTS\" || draftData.registration.presentAtBirthRegistration === \"OTHER\")"
+                  "expression": "(!draftData || !draftData.registration || !draftData.registration.presentAtBirthRegistration !== \"BOTH_PARENTS\" || !draftData.registration.presentAtBirthRegistration === \"OTHER\")"
                 }
               ],
               "preventContinueIfError": true,
@@ -713,7 +713,7 @@
                   "name": "paragraph",
                   "type": "PARAGRAPH",
                   "label": {
-                    "defaultMessage": "This person is responsible for providing accurate information in this application.",
+                    "defaultMessage": "This person is responsible for providing accurate information in this application. .",
                     "description": "Documents Paragraph text",
                     "id": "register.primaryApplicant.description"
                   },
@@ -815,9 +815,17 @@
                   "readonly": true,
                   "hidden": true,
                   "hideInPreview": false,
-                  "initialValue": "",
+                  "initialValue": "SELF",
                   "validate": [],
                   "options": [
+                    {
+                      "value": "SELF",
+                      "label": {
+                        "defaultMessage": "Self",
+                        "description": "Self Label",
+                        "id": "form.field.label.self"
+                      }
+                    },
                     {
                       "value": "MOTHER",
                       "label": {
@@ -832,22 +840,6 @@
                         "defaultMessage": "Father",
                         "description": "Label for option Father",
                         "id": "form.field.label.applicantRelation.father"
-                      }
-                    },
-                    {
-                      "value": "BOTH_PARENTS",
-                      "label": {
-                        "id": "register.selectInformant.parents",
-                        "defaultMessage": "Mother & Father",
-                        "description": "The description that appears when selecting the parent as informant"
-                      }
-                    },
-                    {
-                      "value": "SELF",
-                      "label": {
-                        "defaultMessage": "Self",
-                        "description": "SElf Label",
-                        "id": "form.field.label.self"
                       }
                     },
                     {
@@ -975,6 +967,15 @@
                           "expression": "(draftData && draftData.registration && draftData.registration.presentAtBirthRegistration !== \"OTHER\")"
                         }
                       ]
+                    },
+                    {
+                      "value": "SELF",
+                      "label": {
+                        "defaultMessage": "Self",
+                        "description": "Label for \"Self\" radio option",
+                        "id": "form.field.label.app.whoContDet.self"
+                      },
+                      "conditionals": []
                     },
                     {
                       "value": "MOTHER",
@@ -1416,7 +1417,7 @@
                 },
                 {
                   "name": "childId",
-                  "type": "NUMBER",
+                  "type": "TEXT",
                   "label": {
                     "defaultMessage": "National ID Number (NIN)",
                     "description": "Option for form field: Type of ID",
@@ -1424,30 +1425,14 @@
                   },
                   "required": false,
                   "initialValue": "",
-                  "validate": [
-                    {
-                      "operation": "numeric"
-                    },
-                    {
-                      "operation": "validLength",
-                      "parameters": [
-                        9
-                      ]
-                    }
-                  ],
+                  "validate": [],
                   "conditionals": [],
                   "mapping": {
                     "mutation": {
-                      "operation": "fieldValueNestingTransformer",
+                      "operation": "fieldToIdentityTransformer",
                       "parameters": [
-                        "individual",
-                        {
-                          "operation": "fieldToIdentityTransformer",
-                          "parameters": [
-                            "id",
-                            "NATIONAL_ID"
-                          ]
-                        }
+                        "id",
+                        "NATIONAL_ID"
                       ]
                     },
                     "query": {
@@ -1467,7 +1452,7 @@
                 },
                 {
                   "name": "myChildId",
-                  "type": "NUMBER",
+                  "type": "TEXT",
                   "label": {
                     "defaultMessage": "My Child ID",
                     "description": "text for social security number form field",
@@ -1515,22 +1500,10 @@
                   },
                   "mapping": {
                     "mutation": {
-                      "operation": "fieldValueNestingTransformer",
-                      "parameters": [
-                        "individual",
-                        {
-                          "operation": "fieldToArrayTransformer"
-                        }
-                      ]
+                      "operation": "fieldToArrayTransformer"
                     },
                     "query": {
-                      "operation": "nestedValueToFieldTransformer",
-                      "parameters": [
-                        "individual",
-                        {
-                          "operation": "arrayToFieldTransformer"
-                        }
-                      ]
+                      "operation": "arrayToFieldTransformer"
                     }
                   }
                 },
@@ -2169,7 +2142,7 @@
                   "name": "addressLine2CityOption",
                   "type": "TEXT",
                   "label": {
-                    "defaultMessage": "Street / Plot Number",
+                    "defaultMessage": "Street",
                     "description": "Title for the address line 1",
                     "id": "form.field.label.addressLine2CityOption"
                   },
@@ -2592,7 +2565,7 @@
                 },
                 {
                   "action": "hide",
-                  "expression": "!values.bornInGambia"
+                  "expression": "(draftData && draftData.bornInGambia && !draftData.bornInGambia.bornInGambia)"
                 }
               ],
               "fields": [
@@ -2638,7 +2611,7 @@
                 },
                 {
                   "name": "applicantID",
-                  "type": "NUMBER",
+                  "type": "TEXT",
                   "label": {
                     "defaultMessage": "National ID Number (NIN)",
                     "description": "Option for form field: Type of ID",
@@ -3081,7 +3054,7 @@
                   "name": "addressLine2CityOptionPermanent",
                   "type": "TEXT",
                   "label": {
-                    "defaultMessage": "Street / Plot Number",
+                    "defaultMessage": "Street",
                     "description": "Title for the address line 1",
                     "id": "form.field.label.addressLine2CityOption"
                   },
@@ -3590,7 +3563,7 @@
                 },
                 {
                   "action": "hide",
-                  "expression": "!values.bornInGambia"
+                  "expression": "(draftData && draftData.bornInGambia && !draftData.bornInGambia.bornInGambia)"
                 }
               ],
               "fields": [
@@ -4321,7 +4294,7 @@
                 },
                 {
                   "action": "hide",
-                  "expression": "!values.bornInGambia"
+                  "expression": "(draftData && draftData.bornInGambia && !draftData.bornInGambia.bornInGambia)"
                 }
               ],
               "fields": [
@@ -4355,7 +4328,7 @@
                 },
                 {
                   "name": "iD",
-                  "type": "NUMBER",
+                  "type": "TEXT",
                   "label": {
                     "defaultMessage": "National ID",
                     "description": "Option for form field: Type of ID",
@@ -4363,17 +4336,7 @@
                   },
                   "required": false,
                   "initialValue": "",
-                  "validate": [
-                    {
-                      "operation": "numeric"
-                    },
-                    {
-                      "operation": "validLength",
-                      "parameters": [
-                        9
-                      ]
-                    }
-                  ],
+                  "validate": [],
                   "conditionals": [],
                   "mapping": {
                     "mutation": {
@@ -4957,7 +4920,7 @@
                   "name": "addressLine2CityOptionPermanent",
                   "type": "TEXT",
                   "label": {
-                    "defaultMessage": "Street / Plot Number",
+                    "defaultMessage": "Street",
                     "description": "Title for the address line 1",
                     "id": "form.field.label.addressLine2CityOption"
                   },
@@ -5690,7 +5653,7 @@
                   "name": "addressLine2CityOption",
                   "type": "TEXT",
                   "label": {
-                    "defaultMessage": "Street / Plot Number",
+                    "defaultMessage": "Street",
                     "description": "Title for the address line 1",
                     "id": "form.field.label.addressLine2CityOption"
                   },
@@ -6219,7 +6182,7 @@
                 },
                 {
                   "action": "hide",
-                  "expression": "!values.bornInGambia"
+                  "expression": "(draftData && draftData.bornInGambia && !draftData.bornInGambia.bornInGambia)"
                 }
               ],
               "fields": [
@@ -6267,7 +6230,7 @@
                 },
                 {
                   "name": "iD",
-                  "type": "NUMBER",
+                  "type": "TEXT",
                   "label": {
                     "defaultMessage": "National ID",
                     "description": "Option for form field: Type of ID",
@@ -6276,15 +6239,6 @@
                   "required": false,
                   "initialValue": "",
                   "validate": [
-                    {
-                      "operation": "numeric"
-                    },
-                    {
-                      "operation": "validLength",
-                      "parameters": [
-                        9
-                      ]
-                    }
                   ],
                   "conditionals": [
                     {
@@ -6990,7 +6944,7 @@
                   "name": "addressLine2CityOptionPermanent",
                   "type": "TEXT",
                   "label": {
-                    "defaultMessage": "Street / Plot Number",
+                    "defaultMessage": "Street",
                     "description": "Title for the address line 1",
                     "id": "form.field.label.addressLine2CityOption"
                   },
@@ -7454,7 +7408,7 @@
                   "conditionals": [
                     {
                       "action": "hide",
-                      "expression": "!values.bornInGambia"
+                      "expression": "(draftData && draftData.bornInGambia && !draftData.bornInGambia.bornInGambia)"
                     }
                   ],
                   "options": [
@@ -7514,7 +7468,7 @@
                     },
                     {
                       "action": "hide",
-                      "expression": "!values.bornInGambia"
+                      "expression": "(draftData && draftData.bornInGambia && !draftData.bornInGambia.bornInGambia)"
                     }
                   ],
                   "mapping": {
@@ -7564,7 +7518,7 @@
                     },
                     {
                       "action": "hide",
-                      "expression": "!values.bornInGambia"
+                      "expression": "(draftData && draftData.bornInGambia && !draftData.bornInGambia.bornInGambia)"
                     }
                   ],
                   "mapping": {
@@ -7629,7 +7583,7 @@
                     },
                     {
                       "action": "hide",
-                      "expression": "!values.bornInGambia"
+                      "expression": "(draftData && draftData.bornInGambia && !draftData.bornInGambia.bornInGambia)"
                     }
                   ],
                   "mapping": {
@@ -8097,17 +8051,7 @@
                   },
                   "required": true,
                   "initialValue": "",
-                  "validate": [
-                    {
-                      "operation": "numeric"
-                    },
-                    {
-                      "operation": "validLength",
-                      "parameters": [
-                        9
-                      ]
-                    }
-                  ],
+                  "validate": [],
                   "conditionals": [],
                   "mapping": {
                     "mutation": {
@@ -8673,7 +8617,7 @@
                   "name": "addressLine2CityOptionPermanent",
                   "type": "TEXT",
                   "label": {
-                    "defaultMessage": "Street / Plot Number",
+                    "defaultMessage": "Street",
                     "description": "Title for the address line 1",
                     "id": "form.field.label.addressLine2CityOption"
                   },
@@ -9558,7 +9502,7 @@
                   "type": "TEXT",
                   "previewGroup": "deathPlaceAddress",
                   "label": {
-                    "defaultMessage": "Street / Plot Number",
+                    "defaultMessage": "Street",
                     "description": "Title for the address line 1",
                     "id": "form.field.label.addressLine2CityOption"
                   },
@@ -10683,7 +10627,7 @@
                   "name": "addressLine2CityOptionPermanent",
                   "type": "TEXT",
                   "label": {
-                    "defaultMessage": "Street / Plot Number",
+                    "defaultMessage": "Street",
                     "description": "Title for the address line 1",
                     "id": "form.field.label.addressLine2CityOption"
                   },

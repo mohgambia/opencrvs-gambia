@@ -510,7 +510,7 @@
         "fieldAgentHome.sentForReviewCount": "Sent for review ({total})",
         "fieldAgentHome.zeroUpdatesText": "No applications require updates",
         "form.field.label.addressLine1": "Village",
-        "form.field.label.addressLine2CityOption": "Street / Plot Number",
+        "form.field.label.addressLine2CityOption": "Street",
         "form.field.label.addressLine2": "Area / Ward / Mouja / Village",
         "form.field.label.addressLine3": "Union / Municipality / Cantonment",
         "form.field.label.addressLine3CityOption": "Compound",
