@@ -359,6 +359,24 @@
                   "name": "notes",
                   "type": "TEXT",
                   "label": {
+                    "defaultMessage": "Notes",
+                    "description": "text for notes form field",
+                    "id": "form.field.label.notes"
+                  },
+                  "required": false,
+                  "initialValue": "",
+                  "validate": [],
+                  "conditionals": [
+                    {
+                      "action": "hide",
+                      "expression": "!values.vaccination1Given"
+                    }
+                  ]
+                },
+                {
+                  "name": "reaction",
+                  "type": "TEXT",
+                  "label": {
                     "defaultMessage": "Adverse events following immunization (AEFI)",
                     "description": "text for adverseevent form field",
                     "id": "form.field.label.adverseevent"
@@ -391,7 +409,7 @@
                   ]
                 },
                 {
-                  "name": "placeOfVaccination",
+                  "name": "placeOfBirth",
                   "type": "SELECT_WITH_OPTIONS",
                   "previewGroup": "placeOfVaccination",
                   "ignoreFieldLabelOnErrorMessage": true,
@@ -444,7 +462,7 @@
                   }
                 },
                 {
-                  "name": "vaccinationLocation",
+                  "name": "birthLocation",
                   "type": "LOCATION_SEARCH_INPUT",
                   "label": {
                     "defaultMessage": "Health institution",
@@ -463,7 +481,7 @@
                   "conditionals": [
                     {
                       "action": "hide",
-                      "expression": "(values.placeOfVaccination!=\"HEALTH_FACILITY\")"
+                      "expression": "(values.placeOfBirth!=\"HEALTH_FACILITY\")"
                     }
                   ],
                   "mapping": {
@@ -500,7 +518,7 @@
                   "conditionals": [
                     {
                       "action": "hide",
-                      "expression": "(values.placeOfVaccination!=\"OTHER\")"
+                      "expression": "(values.placeOfBirth!=\"OTHER\")"
                     }
                   ],
                   "mapping": {
@@ -538,7 +556,7 @@
                   "conditionals": [
                     {
                       "action": "hide",
-                      "expression": "(values.placeOfVaccination!=\"OTHER\")"
+                      "expression": "(values.placeOfBirth!=\"OTHER\")"
                     }
                   ],
                   "mapping": {
@@ -597,7 +615,7 @@
                     },
                     {
                       "action": "hide",
-                      "expression": "(values.placeOfVaccination!=\"OTHER\" && values.placeOfVaccination!=\"PRIVATE_HOME\")"
+                      "expression": "(values.placeOfBirth!=\"OTHER\" && values.placeOfBirth!=\"PRIVATE_HOME\")"
                     },
                     {
                       "action": "hide",
@@ -651,7 +669,7 @@
                     },
                     {
                       "action": "hide",
-                      "expression": "(values.placeOfVaccination!=\"OTHER\" && values.placeOfVaccination!=\"PRIVATE_HOME\")"
+                      "expression": "(values.placeOfBirth!=\"OTHER\" && values.placeOfBirth!=\"PRIVATE_HOME\")"
                     }
                   ],
                   "mapping": {
@@ -7368,7 +7386,7 @@
                   "label": {
                     "defaultMessage": "Photograph",
                     "description": "Label for list item Child Birth Proof",
-                    "id": "form.field.label.proofOfBirthPlaceAndDate"
+                    "id": "form.field.label.photograph"
                   },
                   "initialValue": "",
                   "extraValue": "CHILD",
