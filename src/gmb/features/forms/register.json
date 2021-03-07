@@ -356,6 +356,43 @@
                   ]
                 },
                 {
+                  "name": "expiryDate1",
+                  "type": "DATE",
+                  "label": {
+                    "defaultMessage": "Date of expiry",
+                    "description": "Label for form field: Date of exp",
+                    "id": "form.field.label.dateOfGiven1"
+                  },
+                  "required": true,
+                  "initialValue": "",
+                  "validate": [
+                    {
+                      "operation": "dateFormatIsCorrect",
+                      "parameters": []
+                    }
+                  ],
+                  "conditionals": [
+                    {
+                      "action": "hide",
+                      "expression": "!values.vaccination1Given"
+                    }
+                  ],
+                  "mapping": {
+                    "mutation": {
+                      "operation": "longDateTransformer",
+                      "parameters": [
+                        "expiryDate1"
+                      ]
+                    },
+                    "query": {
+                      "operation": "fieldValueTransformer",
+                      "parameters": [
+                        "expiryDate1"
+                      ]
+                    }
+                  }
+                },
+                {
                   "name": "notes",
                   "type": "TEXT",
                   "label": {
@@ -452,7 +489,7 @@
                   ],
                   "mapping": {
                     "mutation": {
-                      "operation": "birthEventLocationMutationTransformer",
+                      "operation": "vaccinationEventLocationMutationTransformer",
                       "parameters": []
                     },
                     "query": {
@@ -486,7 +523,7 @@
                   ],
                   "mapping": {
                     "mutation": {
-                      "operation": "birthEventLocationMutationTransformer",
+                      "operation": "vaccinationEventLocationMutationTransformer",
                       "parameters": []
                     },
                     "query": {
@@ -523,7 +560,7 @@
                   ],
                   "mapping": {
                     "mutation": {
-                      "operation": "birthEventLocationMutationTransformer",
+                      "operation": "vaccinationEventLocationMutationTransformer",
                       "parameters": []
                     },
                     "query": {
@@ -561,7 +598,7 @@
                   ],
                   "mapping": {
                     "mutation": {
-                      "operation": "birthEventLocationMutationTransformer",
+                      "operation": "vaccinationEventLocationMutationTransformer",
                       "parameters": []
                     },
                     "query": {
@@ -624,7 +661,7 @@
                   ],
                   "mapping": {
                     "mutation": {
-                      "operation": "birthEventLocationMutationTransformer",
+                      "operation": "vaccinationEventLocationMutationTransformer",
                       "parameters": []
                     },
                     "query": {
@@ -674,7 +711,7 @@
                   ],
                   "mapping": {
                     "mutation": {
-                      "operation": "birthEventLocationMutationTransformer",
+                      "operation": "vaccinationEventLocationMutationTransformer",
                       "parameters": [
                         4
                       ]
@@ -6256,8 +6293,7 @@
                   },
                   "required": false,
                   "initialValue": "",
-                  "validate": [
-                  ],
+                  "validate": [],
                   "conditionals": [
                     {
                       "action": "hide",
