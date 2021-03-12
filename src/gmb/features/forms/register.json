@@ -1491,16 +1491,10 @@
                       ]
                     },
                     "query": {
-                      "operation": "nestedValueToFieldTransformer",
+                      "operation": "identityToFieldTransformer",
                       "parameters": [
-                        "individual",
-                        {
-                          "operation": "identityToFieldTransformer",
-                          "parameters": [
-                            "id",
-                            "NATIONAL_ID"
-                          ]
-                        }
+                        "id",
+                        "NATIONAL_ID"
                       ]
                     }
                   }
